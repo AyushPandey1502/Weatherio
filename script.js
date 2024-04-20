@@ -10,6 +10,7 @@ const temp = document.getElementById("temp"),
     uvIndex = document.querySelector(".uv_index"),
     uvText = document.querySelector(".uv_text"),
     windSpeed = document.querySelector(".wind_speed"),
+    windSpeedStatus = document.querySelector(".wind_status"),
     sunRise = document.querySelector('.sunrise'),
     sunSet = document.querySelector(".sunset"),
     humidity = document.querySelector(".humidity"),
@@ -100,7 +101,7 @@ function getWeatherDetails(city, unit, hourlyorWeek) {
             currentLocation.innerText = data.resolvedAddress;
             weatherDescription.innerText = data.description;
             condition.innerText = today.conditions;
-            rain.innerText = "Percent - " + today.precipprob + "%";
+            rain.innerText = "Percent -> " + today.precipprob + "%";
             windSpeed.innerText = today.windspeed;
             uvIndex.innerText = today.uvindex;
             visibility.innerText = today.visibility;
@@ -108,6 +109,7 @@ function getWeatherDetails(city, unit, hourlyorWeek) {
             airQuality.innerText = today.winddir;
             sunRise.innerText = convertTimeInto12HrFormat(today.sunrise);
             sunSet.innerText = convertTimeInto12HrFormat(today.sunset);
+            updateWindSpeedStatus(today.windspeed)
             measureUvIndex(today.uvIndex);
             updateHumidityStatus(today.humidity);
             updateAirQualityStatus(today.winddir);
@@ -180,6 +182,38 @@ function updateVisibilityStatus(visibility) {
         visibilityStatus.innerText = "Very Clear Air";
     }
 }
+
+//function to get wind status
+function updateWindSpeedStatus(windSpeed) {
+    if (windSpeed < 1) {
+        windSpeedStatus.innerText = "Calm";
+    } else if (windSpeed >= 1 && windSpeed < 5) {
+        windSpeedStatus.innerText = "Light Air";
+    } else if (windSpeed >= 5 && windSpeed < 11) {
+        windSpeedStatus.innerText = "Light Breeze";
+    } else if (windSpeed >= 11 && windSpeed < 19) {
+        windSpeedStatus.innerText = "Gentle Breeze";
+    } else if (windSpeed >= 19 && windSpeed < 28) {
+        windSpeedStatus.innerText = "Moderate Breeze";
+    } else if (windSpeed >= 28 && windSpeed < 38) {
+        windSpeedStatus.innerText = "Fresh Breeze";
+    } else if (windSpeed >= 38 && windSpeed < 49) {
+        windSpeedStatus.innerText = "Strong Breeze";
+    } else if (windSpeed >= 49 && windSpeed < 61) {
+        windSpeedStatus.innerText = "High Wind";
+    } else if (windSpeed >= 61 && windSpeed < 74) {
+        windSpeedStatus.innerText = "Gale";
+    } else if (windSpeed >= 74 && windSpeed < 88) {
+        windSpeedStatus.innerText = "Strong Gale";
+    } else if (windSpeed >= 88 && windSpeed < 102) {
+        windSpeedStatus.innerText = "Storm";
+    } else if (windSpeed >= 102 && windSpeed < 117) {
+        windSpeedStatus.innerText = "Violent Storm";
+    } else {
+        windSpeedStatus.innerText = "Hurricane";
+    }
+}
+
 
 //function to get air quality status
 function updateAirQualityStatus(airQuality) {

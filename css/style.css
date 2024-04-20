@@ -299,7 +299,7 @@ nav .units button {
     /* text-align: center; */
 }
 
-.highlights .card2 {
+.highlights .status-card {
     width: 220px;
     height: 150px;
     border-radius: 20px;
@@ -310,17 +310,17 @@ nav .units button {
     flex-direction: column;
 }
 
-.card2 .card-heading {
+.status-card .card-heading {
     color: #c2c2c2;
     margin-bottom: 0;
 }
 
-.card2 .content p:first-child {
+.status-card .content p:first-child {
     text-align: center;
     font-size: 25px;
 }
 
-.card2 .content p:last-child {
+.status-card .content p:last-child {
     font-size: 14px;
     margin-top: -20px;
     text-align: left;

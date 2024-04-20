@@ -335,7 +335,7 @@ function updateBackgroundImage(condition) {
     let bg = "";
     if (condition === "partly-cloudy-day") {
         bg = "assets/background/cityscape.jpg";
-    } else if (condition === "Partly-cloudy-night") {
+    } else if (condition === "partly-cloudy-night") {
         bg = "assets/background/cloudy-sky.jpg";
     } else if (condition === "rain") {
         bg = "assets/background/rainy-day.avif";

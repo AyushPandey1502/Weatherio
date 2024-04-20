@@ -64,13 +64,24 @@ function getPublicIp() {
     fetch("https://api.ipgeolocation.io/ipgeo?apiKey=aa7f7bc869324131a27082dcd5adaa7b", {
         method: "GET",
     })
-
-        .then((response) => response.json()).then((data) => {
-            console.log(data)
-            currentCity = data.city;
-            getWeatherDetails(data.city, currentTempUnit, hourlyorWeek);
-        })
+    .then((response) => {
+        if (!response.ok) {
+            throw new Error("Network response was not ok");
+        }
+        return response.json();
+    })
+    .then((data) => {
+        console.log(data);
+        currentCity = data.city;
+        getWeatherDetails(currentCity, currentTempUnit, hourlyorWeek);
+    })
+    .catch((error) => {
+        console.error("Error fetching IP data:", error);
+        currentCity = "Vellore";
+        getWeatherDetails(currentCity, currentTempUnit, hourlyorWeek);
+    });
 }
+
 getPublicIp();
 
 // function to get weather data and update using DOM
